@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Plano {
+  codigo      Int          @id @default(autoincrement())
+  nome        String
+  custoMensal Float
+  data        DateTime     @updatedAt
+  descricao   String
+  assinaturas Assinatura[]
+}
+
+model Cliente {
+  codigo      Int          @id @default(autoincrement())
+  nome        String
+  email       String
+  assinaturas Assinatura[]
+}
+
+model Assinatura {
+  codigo              Int         @id @default(autoincrement())
+  codPlano            Int
+  codCli              Int
+  inicioFidelidade    DateTime
+  fimFidelidade       DateTime
+  dataUltimoPagamento DateTime
+  custoFinal          Float
+  descricao           String?
+  pagamentos          Pagamento[]
+  cliente             Cliente     @relation(fields: [codCli], references: [codigo])
+  plano               Plano       @relation(fields: [codPlano], references: [codigo])
+}
+
+model Pagamento {
+  codigo        Int        @id @default(autoincrement())
+  codAss        Int
+  valorPago     Float
+  dataPagamento DateTime
+  assinatura    Assinatura @relation(fields: [codAss], references: [codigo])
+}

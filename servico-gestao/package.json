@@ -6,7 +6,8 @@
     "build": "tsc",
     "start": "node dist/main.js",
     "start:dev": "nest start --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "prisma generate"
   },
   "author": "Giovanna Barbosa Marinho",
   "license": "ISC",
@@ -15,13 +16,16 @@
     "@nestjs/common": "^11.1.8",
     "@nestjs/core": "^11.1.8",
     "@nestjs/platform-express": "^11.1.8",
+    "@prisma/client": "^6.19.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^11.0.10",
     "@types/node": "^24.10.0",
+    "prisma": "^6.19.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.20.6",
     "typescript": "^5.9.3"
   }
 }
