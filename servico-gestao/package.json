@@ -9,6 +9,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "prisma generate"
   },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "author": "Giovanna Barbosa Marinho",
   "license": "ISC",
   "description": "",
