@@ -1,7 +1,7 @@
 import { PrismaService } from "src/prisma/prisma.service";
 import { Injectable } from "@nestjs/common";
 import { CreateAssinaturaDto } from "./dto/create-assinatura.dto";
-import { Assinatura } from "generated/prisma/client";
+import { Assinatura } from "@prisma/client";
 
 @Injectable()
 export class GestaoService {

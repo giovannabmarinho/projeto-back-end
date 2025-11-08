@@ -1,13 +1,19 @@
-import { PrismaClient } from '../generated/prisma/client';
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 async function main() {
+  const temClientes = await prisma.cliente.findMany();
+  if (temClientes.length > 0) {
+    console.log('Já existem dados cadastrados. Terminando execução do script de seed');
+    return;
+  }
+
   await prisma.cliente.createMany({
     data: [
       {
         nome: 'Giovanna Barbosa Marinho',
-        email: 'joao.silva@email.com',
+        email: 'giovannabmarinho@gmail.com',
       },
       {
         nome: 'Ganache',

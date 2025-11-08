@@ -10,7 +10,7 @@
     "postinstall": "prisma generate"
   },
   "prisma": {
-    "seed": "tsx prisma/seed.ts"
+    "seed": "ts-node prisma/seed.ts"
   },
   "author": "Giovanna Barbosa Marinho",
   "license": "ISC",
