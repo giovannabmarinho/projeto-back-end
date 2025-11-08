@@ -1,42 +1,46 @@
-import { Controller, Get, Post, Patch, Param } from "@nestjs/common";
+import { Controller, Get, Post, Patch, Param, Body } from "@nestjs/common";
+import { GestaoService } from "./gestao.service";
+import { CreateAssinaturaDto } from "./dto/create-assinatura.dto";
 
 @Controller("gestao")
 export class GestaoController {
-    constructor(){}
+    constructor(private readonly gestaoService: GestaoService) { }
 
     @Get("clientes")
     getClientes() {
-        return {};
+        return this.gestaoService.getClientes();
     }
 
     @Get("planos")
     getPlanos() {
-        return {};
+        return this.gestaoService.getPlanos();
     }
 
     @Post("assinaturas")
-    createAssinatura() {
-        return {};
+    createAssinatura(@Body() createAssinaturaDto: CreateAssinaturaDto) {
+        return this.gestaoService.createAssinatura(createAssinaturaDto);
     }
 
     @Patch("planos/:idPlano")
-    updatePlano(@Param("idPlano") idPlano: string) {
-        return {};
+    updatePlano(
+        @Param("idPlano") idPlano: string,
+        @Body() updatePlanoDto: { custoMensal: number }
+    ) {
+        return this.gestaoService.updatePlano(idPlano, updatePlanoDto);
     }
 
     @Get("assinaturas/:tipo")
     getAssinaturasByTipo(@Param("tipo") tipo: string) {
-        return {};
+        return this.gestaoService.getAssinaturasByTipo(tipo);
     }
 
     @Get("assinaturascliente/:codCli")
     getAssinaturasCliente(@Param("codCli") codCli: string) {
-        return {};
+        return this.gestaoService.getAssinaturasCliente(codCli);
     }
 
     @Get("assinaturasplano/:codPlano")
     getAssinaturasPlano(@Param("codPlano") codPlano: string) {
-        return {};
+        return this.gestaoService.getAssinaturasPlano(codPlano);
     }
-
 }

@@ -35,7 +35,7 @@ model Assinatura {
   fimFidelidade       DateTime
   dataUltimoPagamento DateTime
   custoFinal          Float
-  descricao           String?
+  descricao           String
   pagamentos          Pagamento[]
   cliente             Cliente     @relation(fields: [codCli], references: [codigo])
   plano               Plano       @relation(fields: [codPlano], references: [codigo])
