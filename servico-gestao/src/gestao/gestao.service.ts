@@ -73,10 +73,10 @@ export class GestaoService {
             },
         });
 
-        const trintaDias = new Date(new Date().setDate(new Date().getDate() + 30));
+        const trintaDiasAtras = new Date(new Date().setDate(new Date().getDate() - 30));
 
         return assinaturas.map(assinatura => {
-            const status = assinatura.dataUltimoPagamento > trintaDias ? "ATIVO" : "CANCELADO";
+            const status = assinatura.dataUltimoPagamento > trintaDiasAtras ? "ATIVO" : "CANCELADO";
 
             return {
                 ...assinatura,
@@ -92,10 +92,10 @@ export class GestaoService {
             },
         });
 
-        const trintaDias = new Date(new Date().setDate(new Date().getDate() + 30));
+        const trintaDiasAtras = new Date(new Date().setDate(new Date().getDate() - 30));
 
         return assinaturas.map(assinatura => {
-            const status = assinatura.dataUltimoPagamento > trintaDias ? "ATIVO" : "CANCELADO";
+            const status = assinatura.dataUltimoPagamento > trintaDiasAtras ? "ATIVO" : "CANCELADO";
             return {
                 ...assinatura,
                 status,
