@@ -88,6 +88,8 @@ async function main() {
   const planosCriados = await prisma.plano.findMany();
 
   const hoje = new Date();
+  const doisMesesAtras = new Date(hoje);
+  doisMesesAtras.setMonth(doisMesesAtras.getMonth() - 2);
   const proximosDozeMeses = new Date(hoje);
   proximosDozeMeses.setMonth(proximosDozeMeses.getMonth() + 12);
 
@@ -99,7 +101,7 @@ async function main() {
         inicioFidelidade: hoje,
         fimFidelidade: proximosDozeMeses,
         dataUltimoPagamento: hoje,
-        custoFinal: planosCriados[0].custoMensal * 12,
+        custoFinal: planosCriados[0].custoMensal,
         descricao: 'Assinatura anual do plano básico',
       },
       {
@@ -108,25 +110,25 @@ async function main() {
         inicioFidelidade: hoje,
         fimFidelidade: proximosDozeMeses,
         dataUltimoPagamento: hoje,
-        custoFinal: planosCriados[1].custoMensal * 12,
+        custoFinal: planosCriados[1].custoMensal,
         descricao: 'Assinatura anual do plano intermediário',
       },
       {
         codPlano: planosCriados[2].codigo,
         codCli: clientesCriados[2].codigo,
-        inicioFidelidade: hoje,
+        inicioFidelidade: doisMesesAtras,
         fimFidelidade: proximosDozeMeses,
-        dataUltimoPagamento: hoje,
-        custoFinal: planosCriados[2].custoMensal * 12,
+        dataUltimoPagamento: doisMesesAtras,
+        custoFinal: planosCriados[2].custoMensal,
         descricao: 'Assinatura anual do plano premium',
       },
       {
         codPlano: planosCriados[3].codigo,
         codCli: clientesCriados[3].codigo,
-        inicioFidelidade: hoje,
+        inicioFidelidade: doisMesesAtras,
         fimFidelidade: proximosDozeMeses,
-        dataUltimoPagamento: hoje,
-        custoFinal: planosCriados[3].custoMensal * 12,
+        dataUltimoPagamento: doisMesesAtras,
+        custoFinal: planosCriados[3].custoMensal,
         descricao: 'Assinatura anual do plano empresarial',
       },
       {
@@ -135,7 +137,7 @@ async function main() {
         inicioFidelidade: hoje,
         fimFidelidade: proximosDozeMeses,
         dataUltimoPagamento: hoje,
-        custoFinal: planosCriados[4].custoMensal * 12,
+        custoFinal: planosCriados[4].custoMensal,
         descricao: 'Assinatura anual do plano familiar',
       },
     ],

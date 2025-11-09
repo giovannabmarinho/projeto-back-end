@@ -34,29 +34,30 @@ export class GestaoService {
 
     async getAssinaturasByTipo(tipo: string) {
         let assinaturas: Assinatura[] = [];
+        const trintaDiasAtras = new Date(new Date().setDate(new Date().getDate() - 30));
 
-        if (tipo === "ATIVO") {
+        if (tipo === "ATIVOS") {
             assinaturas = await this.prismaService.assinatura.findMany({
                 where: {
                     dataUltimoPagamento: {
-                        gt: new Date(),
+                        gt: trintaDiasAtras,
                     },
                 },
             });
-        } else if (tipo === "CANCELADO") {
+        } else if (tipo === "CANCELADOS") {
             assinaturas = await this.prismaService.assinatura.findMany({
                 where: {
                     dataUltimoPagamento: {
-                        lte: new Date(),
+                        lte: trintaDiasAtras,
                     },
                 },
             });
         } else {
             assinaturas = await this.prismaService.assinatura.findMany();
-        }
+        }        
 
         return assinaturas.map(assinatura => {
-            const status = assinatura.dataUltimoPagamento > new Date() ? "ATIVO" : "CANCELADO";
+            const status = assinatura.dataUltimoPagamento > trintaDiasAtras ? "ATIVO" : "CANCELADO";
 
             return {
                 ...assinatura,
@@ -72,9 +73,10 @@ export class GestaoService {
             },
         });
 
+        const trintaDias = new Date(new Date().setDate(new Date().getDate() + 30));
 
         return assinaturas.map(assinatura => {
-            const status = assinatura.dataUltimoPagamento > new Date() ? "ATIVO" : "CANCELADO";
+            const status = assinatura.dataUltimoPagamento > trintaDias ? "ATIVO" : "CANCELADO";
 
             return {
                 ...assinatura,
@@ -90,8 +92,10 @@ export class GestaoService {
             },
         });
 
+        const trintaDias = new Date(new Date().setDate(new Date().getDate() + 30));
+
         return assinaturas.map(assinatura => {
-            const status = assinatura.dataUltimoPagamento > new Date() ? "ATIVO" : "CANCELADO";
+            const status = assinatura.dataUltimoPagamento > trintaDias ? "ATIVO" : "CANCELADO";
             return {
                 ...assinatura,
                 status,
