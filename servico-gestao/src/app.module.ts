@@ -5,4 +5,3 @@ import { GestaoModule } from './gestao/gestao.module';
   imports: [GestaoModule],
 })
 export class AppModule {}
-

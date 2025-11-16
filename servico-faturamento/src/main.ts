@@ -7,11 +7,11 @@ async function bootstrap() {
     transport: Transport.TCP,
     options: {
       host: '127.0.0.1',
-      port: 3003,
+      port: 3002,
     },
   });
   await app.listen().then(() => {
-    console.log('Servico de Planos Ativos iniciado na porta 3002')
+    console.log('Servico de Faturamento iniciado na porta 3002')
   });
 }
 

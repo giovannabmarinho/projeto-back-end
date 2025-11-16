@@ -6,9 +6,9 @@ import { EventPattern, MessagePattern, Payload } from '@nestjs/microservices';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @MessagePattern({cmd: 'planosativos/:codAss'})
-  getPlanosAtivos(@Param('codAss') codAss: string) {
-    return this.appService.getPlanosAtivos(codAss);
+  @MessagePattern({cmd: 'planosativos/codAss'})
+  getPlanosAtivos(@Payload() payload: { codAss: string }) {
+    return this.appService.getPlanosAtivos(payload.codAss);
   }
 
   @EventPattern("PagamentoPlanoServicoPlanosAtivos")

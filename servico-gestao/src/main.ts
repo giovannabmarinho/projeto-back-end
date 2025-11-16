@@ -11,9 +11,8 @@ async function bootstrap() {
     },
   });
   await app.listen().then(() => {
-    console.log('Servico de Gestão iniciado na porta 3001')
+    console.log('Servico de Gestão iniciado na porta 3001');
   });
 }
 
 bootstrap();
-

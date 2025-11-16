@@ -11,7 +11,7 @@ async function bootstrap() {
     },
   });
   await app.listen().then(() => {
-    console.log('Servico de Planos Ativos iniciado na porta 3002')
+    console.log('Servico de Planos Ativos iniciado na porta 3003')
   });
 }
 
