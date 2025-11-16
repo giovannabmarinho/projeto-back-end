@@ -14,8 +14,11 @@ Sistema backend desenvolvido em NestJS para gestão de assinaturas, clientes e p
 - Node.js
 - npm
 
-## Instalação
+## Configuração e Execução do Projeto
 
+Abra 4 terminais diferentes, um para cada microsserviço + api gateway
+
+### No primeiro terminal:
 1. Navegue até a pasta do projeto:
 ```bash
 cd servico-gestao
@@ -26,29 +29,67 @@ cd servico-gestao
 npm install
 ```
 
-## Configuração do Banco de Dados
-
-1. Execute as migrações do Prisma:
+3. Execute as migrações do Prisma:
 ```bash
 npx prisma migrate deploy
 ```
 
-2. (Opcional) Popule o banco com dados iniciais:
+4. (Opcional) Popule o banco com dados iniciais:
 ```bash
 npx prisma db seed
 ```
 
-## Executando o Projeto
-
-### Modo Desenvolvimento
+5. Rode o serviço
 ```bash
 npm run start:dev
 ```
 
-### Modo Produção
+### No segundo terminal:
+1. Navegue até a pasta do projeto:
 ```bash
-npm run build
-npm start
+cd servico-planos-ativos
+```
+
+2. Instale as dependências:
+```bash
+npm install
+```
+
+3. Rode o serviço
+```bash
+npm run start:dev
+```
+
+### No terceiro terminal:
+1. Navegue até a pasta do projeto:
+```bash
+cd servico-faturamento
+```
+
+2. Instale as dependências:
+```bash
+npm install
+```
+
+3. Rode o serviço
+```bash
+npm run start:dev
+```
+
+### No quarto terminal:
+1. Navegue até a pasta do projeto:
+```bash
+cd api-gateway
+```
+
+2. Instale as dependências:
+```bash
+npm install
+```
+
+3. Rode o serviço
+```bash
+npm run start:dev
 ```
 
 O servidor estará disponível em `http://localhost:3000`
