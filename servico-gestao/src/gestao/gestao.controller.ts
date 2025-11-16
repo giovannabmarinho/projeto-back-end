@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Patch, Param, Body } from "@nestjs/common";
 import { GestaoService } from "./gestao.service";
 import { CreateAssinaturaDto } from "./dto/create-assinatura.dto";
-import { MessagePattern } from "@nestjs/microservices";
+import { EventPattern, MessagePattern, Payload } from "@nestjs/microservices";
 
 @Controller()
 export class GestaoController {
@@ -43,5 +43,10 @@ export class GestaoController {
     @MessagePattern({cmd: 'assinaturasplano/:codPlano'})
     getAssinaturasPlano(@Param("codPlano") codPlano: string) {
         return this.gestaoService.getAssinaturasPlano(codPlano);
+    }
+
+    @EventPattern("PagamentoPlanoServicoGestao")
+    handlePagamentoPlano(@Payload() payload: any) {
+        console.log(payload);
     }
 }

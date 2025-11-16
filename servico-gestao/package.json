@@ -6,12 +6,10 @@
     "build": "tsc",
     "start": "node dist/main.js",
     "start:dev": "nest start --watch",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "prisma generate"
   },
   "prisma": {
-    "seed": "ts-node ../prisma/seed.ts",
-    "schema": "../prisma/schema.prisma"
+    "seed": "ts-node ../prisma/seed.ts"
   },
   "author": "Giovanna Barbosa Marinho",
   "license": "ISC",

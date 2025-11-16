@@ -14,11 +14,19 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         },
       },
       {
-        name: 'SERVICO_PLANOS_ATIVOS',
+        name: 'SERVICO_FATURAMENTO',
         transport: Transport.TCP,
         options: {
           host: '127.0.0.1',
           port: 3002,
+        },
+      },
+      {
+        name: 'SERVICO_PLANOS_ATIVOS',
+        transport: Transport.TCP,
+        options: {
+          host: '127.0.0.1',
+          port: 3003,
         },
       }
     ])
