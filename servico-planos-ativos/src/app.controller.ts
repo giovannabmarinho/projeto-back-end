@@ -1,13 +1,18 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { AppService } from './app.service';
-import { MessagePattern } from '@nestjs/microservices';
+import { EventPattern, MessagePattern, Payload } from '@nestjs/microservices';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @MessagePattern({cmd: 'planos'})
-  getPlanos() {
-    return []
+  @MessagePattern({cmd: 'planosativos/:codAss'})
+  getPlanosAtivos(@Param('codAss') codAss: string) {
+    return this.appService.getPlanosAtivos(codAss);
+  }
+
+  @EventPattern("PagamentoPlanoServicoPlanosAtivos")
+  handlePagamentoPlano(@Payload() payload: { codAss: string, dataPagamento: Date }) {
+    this.appService.handlePagamentoPlano(payload.codAss, payload.dataPagamento);
   }
 }
